@@ -11,7 +11,7 @@ import jakarta.persistence.Persistence;
 @ApplicationScoped
 public class EntityManagerProducer {
 
-    // On utilise exactement le nom défini dans le persistence.xml
+
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("PlateformeCommerciale");
 
     @Produces
