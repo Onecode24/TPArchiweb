@@ -26,15 +26,15 @@ public class OrderService {
     @Inject
     private OrderItemService orderItemService;
     
-    public OrderResponse createOrder(CreateOrderRequest request) {
+    public OrderResponse createOrder(CreateOrderRequest request, Long userId) {
         try {
             entityManager.getTransaction().begin();
             
-            User user = entityManager.find(User.class, request.getUserId());
+            User user = entityManager.find(User.class, userId);
             if (user == null) {
-                throw new IllegalArgumentException("User not found with id: " + request.getUserId());
+                throw new IllegalArgumentException("User not found with id: " + userId);
             }
-            System.out.println(" User get : " + user.getId() + request.getUserId());
+            System.out.println(" User get : " + user.getUsername() + " - " + userId);
 
             for (CreateOrderRequest.OrderItemRequest itemRequest : request.getItems()) {
                 Product product = entityManager.find(Product.class, itemRequest.getProductId());
