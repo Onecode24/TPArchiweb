@@ -1,4 +1,4 @@
-package com.episen.tparchiweb.ressource;
+package com.episen.tparchiweb.resource;
 
 import com.episen.tparchiweb.model.Product;
 import com.episen.tparchiweb.service.ProductService;

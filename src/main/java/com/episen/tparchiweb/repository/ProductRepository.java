@@ -13,11 +13,17 @@ public class ProductRepository {
     }
 
     public void update(EntityManager em, Product product) {
+        em.getTransaction().begin();
         em.merge(product);
+        em.getTransaction().commit();
     }
 
     public void delete(EntityManager em, Product product) {
-        em.remove(product);
+        em.getTransaction().begin();
+        em.remove(
+                em.contains(product) ? product : em.merge(product)
+        );
+        em.getTransaction().commit();
     }
 
     public Product findById(EntityManager em, Long id) {
@@ -30,7 +36,10 @@ public class ProductRepository {
     }
 
     public List<Product> findByCategory(EntityManager em, String category) {
-        return em.createQuery("SELECT p FROM Product p WHERE p.category = :cat", Product.class)
+        return em.createQuery(
+                        "SELECT p FROM Product p WHERE p.category = :cat",
+                        Product.class
+                )
                 .setParameter("cat", category)
                 .getResultList();
     }
