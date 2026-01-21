@@ -37,24 +37,6 @@ public class ProductRessource {
         return Response.status(Response.Status.CREATED).entity(product).build();
     }
 
-    @POST
-    @Path("/{id}/stock/increase")
-    public Response addStock(@PathParam("id") Long id, @QueryParam("quantity") int quantity) {
-        productService.increaseStock(id, quantity);
-        return Response.ok().build();
-    }
-
-    @POST
-    @Path("/{id}/stock/decrease")
-    public Response removeStock(@PathParam("id") Long id, @QueryParam("quantity") int quantity) {
-        boolean success = productService.decreaseStock(id, quantity);
-        if (success) {
-            return Response.ok().build();
-        }
-        return Response.status(Response.Status.BAD_REQUEST)
-                .entity("Stock insuffisant ou produit inexistant")
-                .build();
-    }
 
     @PUT
     @Path("/{id}")

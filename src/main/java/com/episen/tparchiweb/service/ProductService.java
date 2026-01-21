@@ -47,12 +47,6 @@ public class ProductService {
         return repo.findByCategory(em, category);
     }
 
-    public void increaseStock(Long productId, int quantity) {
-        repo.increaseStock(em, productId, quantity);
-    }
 
-    public boolean decreaseStock(Long productId, int quantity) {
-        return repo.decreaseStock(em, productId, quantity);
-    }
 
 }
