@@ -56,6 +56,23 @@ public class ProductRessource {
                 .build();
     }
 
+    @PUT
+    @Path("/{id}")
+    public Response update(@PathParam("id") Long id, Product updatedProduct) {
+        Product existingProduct = productService.getProductById(id);
+        if (existingProduct == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        existingProduct.setName(updatedProduct.getName());
+        existingProduct.setCategory(updatedProduct.getCategory());
+        existingProduct.setPrice(updatedProduct.getPrice());
+        existingProduct.setStock(updatedProduct.getStock());
+
+        productService.updateProduct(existingProduct);
+        return Response.ok(existingProduct).build();
+    }
+
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
