@@ -58,15 +58,13 @@ public class ProductRessource {
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
-        // On vérifie d'abord si le produit existe
         Product product = productService.getProductById(id);
 
         if (product != null) {
-            // On appelle le service en passant directement l'ID
             productService.deleteProduct(id);
-            return Response.noContent().build(); // Réponse 204 (Succès, pas de contenu)
+            return Response.noContent().build();
         }
 
-        return Response.status(Response.Status.NOT_FOUND).build(); // Réponse 404
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 }
