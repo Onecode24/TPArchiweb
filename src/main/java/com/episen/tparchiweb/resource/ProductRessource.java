@@ -1,6 +1,8 @@
 package com.episen.tparchiweb.resource;
 
 import com.episen.tparchiweb.model.Product;
+import com.episen.tparchiweb.security.annotation.AdminOnly;
+import com.episen.tparchiweb.security.annotation.Secured;
 import com.episen.tparchiweb.service.ProductService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -32,6 +34,8 @@ public class ProductRessource {
     }
 
     @POST
+    @Secured
+    @AdminOnly
     public Response create(Product product) {
         productService.addProduct(product);
         return Response.status(Response.Status.CREATED).entity(product).build();
@@ -40,6 +44,8 @@ public class ProductRessource {
 
     @PUT
     @Path("/{id}")
+    @Secured
+    @AdminOnly
     public Response update(@PathParam("id") Long id, Product updatedProduct) {
         Product existingProduct = productService.getProductById(id);
         if (existingProduct == null) {
@@ -57,6 +63,8 @@ public class ProductRessource {
 
     @DELETE
     @Path("/{id}")
+    @Secured
+    @AdminOnly
     public Response delete(@PathParam("id") Long id) {
         Product product = productService.getProductById(id);
 
