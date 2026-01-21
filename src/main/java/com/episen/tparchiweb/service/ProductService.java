@@ -61,6 +61,6 @@ public class ProductService {
             product.setStock(product.getStock() - quantity);
             return true;
         }
-        return false; // Vous pourriez aussi jeter une exception ici
+        return false;
     }
 }
