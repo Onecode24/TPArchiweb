@@ -20,6 +20,9 @@ public class Product {
 
     @Column(nullable = false)
     private Integer stock;
+
+    @Column(nullable = false)
+    private String category;
     
     @Column(name = "createdAt", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -87,5 +90,13 @@ public class Product {
     
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
