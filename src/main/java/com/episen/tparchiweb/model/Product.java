@@ -23,24 +23,7 @@ public class Product {
 
     @Column(nullable = false)
     private String category;
-    
-    @Column(name = "createdAt", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-    
-    @Column(name = "updatedAt")
-    private LocalDateTime updatedAt;
-    
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-    
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-    
+
     public Product() {
     }
     
@@ -74,22 +57,6 @@ public class Product {
     
     public void setStock(Integer stock) {
         this.stock = stock;
-    }
-    
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-    
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public String getCategory() {

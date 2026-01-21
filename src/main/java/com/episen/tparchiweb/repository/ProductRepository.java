@@ -7,7 +7,9 @@ import java.util.List;
 public class ProductRepository {
 
     public void save(EntityManager em, Product product) {
+        em.getTransaction().begin();
         em.persist(product);
+        em.getTransaction().commit();
     }
 
     public void update(EntityManager em, Product product) {
