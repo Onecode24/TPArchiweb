@@ -12,7 +12,7 @@ import jakarta.persistence.Persistence;
 public class EntityManagerProducer {
 
 
-    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("PlateformeCommerciale");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
     @Produces
     @RequestScoped

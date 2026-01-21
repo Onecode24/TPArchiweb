@@ -1,7 +1,6 @@
 package com.episen.tparchiweb.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -22,24 +21,7 @@ public class User {
     
     @Column(name = "is_admin", nullable = false)
     private Boolean isAdmin = false;
-    
-    @Column(name = "createdAt", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-    
-    @Column(name = "updatedAt")
-    private LocalDateTime updatedAt;
-    
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-    
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-    
+
     public User() {
     }
     
@@ -81,21 +63,5 @@ public class User {
     
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
-    }
-    
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-    
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-    
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

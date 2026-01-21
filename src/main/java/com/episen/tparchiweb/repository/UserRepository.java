@@ -54,13 +54,27 @@ public class UserRepository {
         return em.find(User.class, id);
     }
 
-    @Transactional
     public User save(User user) {
+        em.getTransaction().begin();
         if (user.getId() == null) {
             em.persist(user);
-            return user;
         } else {
-            return em.merge(user);
+            user = em.merge(user);
         }
+        em.getTransaction().commit();
+        return user;
+    }
+
+    public User update(User user) {
+        em.getTransaction().begin();
+        user = em.merge(user);
+        em.getTransaction().commit();
+        return user;
+    }
+
+    public void delete(User user) {
+        em.getTransaction().begin();
+        em.remove(user);
+        em.getTransaction().commit();
     }
 }
