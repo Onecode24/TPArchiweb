@@ -48,19 +48,11 @@ public class ProductService {
     }
 
     public void increaseStock(Long productId, int quantity) {
-        Product product = repo.findById(em, productId);
-        if (product != null) {
-            product.setStock(product.getStock() + quantity);
-
-        }
+        repo.increaseStock(em, productId, quantity);
     }
 
     public boolean decreaseStock(Long productId, int quantity) {
-        Product product = repo.findById(em, productId);
-        if (product != null && product.getStock() >= quantity) {
-            product.setStock(product.getStock() - quantity);
-            return true;
-        }
-        return false;
+        return repo.decreaseStock(em, productId, quantity);
     }
+
 }

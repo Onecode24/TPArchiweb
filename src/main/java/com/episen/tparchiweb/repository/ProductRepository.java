@@ -43,4 +43,25 @@ public class ProductRepository {
                 .setParameter("cat", category)
                 .getResultList();
     }
+
+
+    public void increaseStock(EntityManager em, Long productId, int quantity) {
+        Product product = em.find(Product.class, productId);
+        if (product != null) {
+            product.setStock(product.getStock() + quantity);
+            em.merge(product); // merge n'est même pas strictement nécessaire si l'objet est déjà managed
+        }
+    }
+
+    public boolean decreaseStock(EntityManager em, Long productId, int quantity) {
+        Product product = em.find(Product.class, productId);
+        if (product != null && product.getStock() >= quantity) {
+            product.setStock(product.getStock() - quantity);
+            em.merge(product);
+            return true;
+        }
+        return false;
+    }
+
+
 }
