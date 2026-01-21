@@ -10,14 +10,14 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
-@ApplicationScoped // Le service vit tant que l'application tourne
-@Transactional    // Remplace le comportement automatique du @Stateless
+@ApplicationScoped
+@Transactional
 public class ProductService {
 
-    @Inject // Changement ici : on passe de @PersistenceContext à @Inject
+    @Inject
     private EntityManager em;
 
-    @Inject // Injecte automatiquement le repository
+    @Inject
     private ProductRepository repo;
 
     public void addProduct(Product product) {
@@ -51,7 +51,7 @@ public class ProductService {
         Product product = repo.findById(em, productId);
         if (product != null) {
             product.setStock(product.getStock() + quantity);
-            // Pas besoin de appeler update(), JPA détecte le changement à la fin de la transaction
+
         }
     }
 
